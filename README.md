@@ -1,4 +1,4 @@
-[# Frontend Challenge: Github User Search](https://lovelystay-test.vercel.app/)
+# [Frontend Challenge: Github User Search](https://lovelystay-test.vercel.app/)
 
 ## ✅ Description
 
