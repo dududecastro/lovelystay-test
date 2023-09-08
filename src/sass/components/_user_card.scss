@@ -1,0 +1,38 @@
+@import '../utilities/variables';
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 280px;
+  padding: 16px;
+  transition: 0.2s;
+  background-color: $main-bg;
+  cursor: pointer;
+  border: 1px solid $border;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: $font-color;
+  &:hover {
+    box-shadow: 0 5px 15px -10px #000;
+    transform: scale(1.05);
+    border-color: $border-hover;
+    color: #fff;
+  }
+  .photo {
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    max-width: 100%;
+  }
+}

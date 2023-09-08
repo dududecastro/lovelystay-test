@@ -1,0 +1,80 @@
+@import '../utilities/variables';
+
+.search-user-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 24px;
+  .form-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 60%;
+    max-width: 600px;
+    padding: 24px 30px 24px 30px;
+    background-color: $secondary-bg;
+    border-radius: 7px;
+    .search-input {
+      flex-grow: 6;
+      padding: 10px;
+      background-color: $main-bg;
+      border: 1px solid $border;
+      border-radius: 3px;
+      color: $font-color;
+      &:focus {
+        outline: none;
+        border: 1px solid $border-hover;
+      }
+    }
+    @media screen and (max-width: $mobile-width) {
+      width: 100%;
+      max-width: 100%;
+      button {
+        gap: 0;
+        text-indent: -9999px;
+      }
+    }
+  }
+  .user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    padding: 36px 0px;
+  }
+  .repositories-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    padding: 36px;
+  }
+  .username-suggestions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+    .username-sugestions-item {
+      overflow: hidden;
+      max-width: 32%;
+      padding: 4px 8px;
+      transition: 0.2s;
+      background: $border;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: $font-color;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      &:hover {
+        background-color: $border-hover;
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+@import '../utilities/variables';
+
+.repository-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid $border;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: $font-color;
+  text-decoration: none;
+  .repository-name {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $primary-color;
+    .repository-visibility {
+      margin-left: 16px;
+      padding: 4px 16px;
+      border: 1px solid $border;
+      border-radius: 48px;
+      font-size: 0.8rem;
+      color: $font-color;
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+  .repository-description {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  svg {
+    fill: $font-color;
+    margin-right: 8px;
+  }
+  .repository-topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 -8px 0;
+    padding: 0;
+    font-size: 0.8rem;
+    list-style: none;
+    .topic-item {
+      opacity: 0.6;
+      padding: 4px 8px;
+      background: #2c2044;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .repository-data {
+    --language-color: rgb(79, 93, 149);
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    & > div {
+      display: flex;
+      align-items: center;
+      opacity: 0.4;
+    }
+    .repository-language {
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        margin-right: 4px;
+        background-color: var(--language-color);
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.color-javascript {
+  --language-color: rgb(241, 224, 90);
+}
+.color-java {
+  --language-color: rgb(176, 114, 25);
+}
+.color-html {
+  --language-color: rgb(227, 76, 38);
+}
+.color-python {
+  --language-color: rgb(53, 114, 165);
+}
+.color-csharp {
+  --language-color: rgb(23, 134, 0);
+}
+.color-php {
+  --language-color: rgb(79, 93, 149);
+}
+.color-css {
+  --language-color: rgb(86, 61, 124);
+}
+.color-typescript {
+  --language-color: rgb(49, 120, 198);
+}
+.color-ruby {
+  --language-color: rgb(112, 21, 22);
+}
+.color-cplusplus {
+  --language-color: rgb(243, 75, 125);
+}
+
+@media screen and (max-width: 768px) {
+  .repository-item {
+    padding: 20px 10px;
+    .repository-name {
+      font-size: 1.2rem;
+    }
+    .repository-description {
+      font-size: 0.8rem;
+    }
+    .repository-data {
+      flex-wrap: wrap;
+      .repository-updated-at {
+        width: 100%;
+      }
+    }
+  }
+}

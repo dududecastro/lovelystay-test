@@ -1,0 +1,102 @@
+@import '../utilities/variables';
+
+.user-info-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 80%;
+  padding: 40px 0px;
+  border-radius: 7px;
+  font-size: 1rem;
+  color: $font-color;
+  .user-avatar {
+    object-fit: cover;
+    width: 128px;
+    height: 128px;
+    margin-right: 24px;
+    border-radius: 50%;
+  }
+  .status-message {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    text-align: left;
+    .user-name {
+      margin: 0;
+      font-size: 1.4rem;
+      svg {
+        margin-left: 8px;
+      }
+    }
+    .user-login {
+      opacity: 0.5;
+      margin: 8px 0 24px 0;
+      svg {
+        margin-left: 8px;
+      }
+    }
+    .user-bio {
+      margin: 0;
+    }
+    .user-company,
+    .user-location {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 0.8rem;
+    }
+  }
+  .user-data {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 0.8rem;
+    .data-item {
+      display: flex;
+      .label {
+        margin-left: 8px;
+      }
+    }
+  }
+  svg {
+    fill: $font-color;
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .user-info-card {
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+    .user-avatar {
+      width: 128px;
+      height: 128px;
+    }
+    .user-info {
+      align-items: center;
+      text-align: center;
+      .user-name {
+        font-size: 1.5rem;
+      }
+      .user-repositories {
+        font-size: 1rem;
+      }
+    }
+    .user-data {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0.5;
+      margin: 16px 0;
+    }
+  }
+}

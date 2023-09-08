@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import "utilities/variables";
+@import "pages/display_user_page";
+@import "pages/search_user_page";
+@import "pages/not_found_page";
+@import "components/repositories_list";
+@import "components/repository_item";
+@import "components/user_card";
+@import "components/user_info_card";
+
+* {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  body {
+    position: relative;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $main-bg;
+    font-size: 1.6rem;
+    font-family: "Roboto", sans-serif;
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -50vh;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient($secondary-bg 0%,$main-bg 70%,rgb(0, 0, 0, 0) 80%);
+    }
+    #root {
+      height: 100%;
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+    }
+    .error-msg {
+      padding: 48px 24px;
+      font-size: 1.4rem;
+      color: $font-color;
+    }
+    .project-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 48px;
+      cursor: pointer;
+      font-size: 2rem;
+      font-weight: 100;
+      color: $font-color;
+      text-align: center;
+      svg {
+        fill: $font-color;
+        margin-right: 16px;
+      }
+      @media screen and (max-width: $mobile-width) {
+        margin-bottom: 24px;
+      }
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      flex-grow: 1;
+      max-width: 180px;
+      padding: 9px 5px;
+      transition: all 0.2s ease-in-out;
+      background-color: $secondary-bg;
+      cursor: pointer;
+      border: 1px solid $border-hover;
+      border-radius: 3px;
+      color: $primary-color;
+      svg {
+        fill: $primary-color;
+        transition: 0.2s;
+      }
+      &:hover {
+        background-color: $secondary-bg-hover;
+        color: #fff;
+        svg {
+          fill: #fff;
+        }
+      }
+      &:disabled {
+        background-color: transparent;
+        color: $border-hover;
+        svg {
+          fill: $border-hover;
+        }
+      }
+    }
+  }
+}
