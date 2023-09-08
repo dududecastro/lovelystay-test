@@ -1,5 +1,7 @@
 # [Frontend Challenge: Github User Search](https://lovelystay-test.vercel.app/)
 
+[Live demo](https://lovelystay-test.vercel.app/)
+
 ## ✅ Description
 
 Here is the challenge I received from LovelyStay for the front end developer position: Create a gihtub user search engine using their public API.
