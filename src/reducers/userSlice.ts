@@ -13,14 +13,15 @@ import {
   APIUserResponse,
   APIRepositoryResponse,
   APIError,
+  Status
 } from '../types';
 
 export interface UserState {
   user: User | undefined;
   repositories: Repository[];
   status: {
-    user: 'default' | 'success' | 'loading' | 'error';
-    repos: 'default' | 'success' | 'loading' | 'error';
+    user: Status;
+    repos: Status;
   };
   error: string | undefined;
 }

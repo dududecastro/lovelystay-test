@@ -1,8 +1,14 @@
 import { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../app/store';
+import { useDispatch } from 'react-redux';
+import { cleanUserList } from '../reducers/userListSlice';
 import { User } from '../types';
 
 const UserCard = (data:any): ReactElement => {
+
+  const dispatch = useDispatch<AppDispatch>();
+
   const userdata:User = data.data;
   const {
     login,
@@ -12,6 +18,7 @@ const UserCard = (data:any): ReactElement => {
   const navigate = useNavigate();
 
   function handleClick() {
+    dispatch(cleanUserList());
     return navigate(`/${login}`);
   }
   

@@ -7,6 +7,16 @@ import {
   APIRepositoryResponse,
 } from '../types';
 
+const TOKEN = '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';
+
+const hasResponseErrors = (response:any) => {
+  if (response.status === 403) {
+    return 'GitHub API rate limit exceeded, please try again later.';
+  }
+  
+  return response.status === 404 ? 'User not found' : response.statusText;
+}
+
 export const fetchUserList = async (
   username: string,
   page: number
@@ -15,17 +25,11 @@ export const fetchUserList = async (
     const response = await fetch(`https://api.github.com/search/users?q=${username}&page=${page}&per_page=20`, {
       headers: {
         'User-Agent': 'request',
+        'Authorization': `token ${TOKEN}`,
       },
     });
-    if (response.status === 403) {
-      return {
-        message: 'GitHub API rate limit exceeded, please try again later.',
-      };
-    } else if (!response.ok) {
-      return {
-        message:
-          response.status === 404 ? 'User not found' : response.statusText,
-      };
+    if (response.status === 403 || !response.ok) {
+      return { message: hasResponseErrors(response) };
     }
     const data = await response.json();
 
@@ -47,17 +51,11 @@ export const fetchUser = async (username: string): Promise<APIUserResponse> => {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
         'User-Agent': 'request',
+        'Authorization': `token ${TOKEN}`,
       },
     });
-    if (response.status === 403) {
-      return {
-        message: 'GitHub API rate limit exceeded, please try again later.',
-      };
-    } else if (!response.ok) {
-      return {
-        message:
-          response.status === 404 ? 'User not found' : response.statusText,
-      };
+    if (response.status === 403 || !response.ok) {
+      return { message: hasResponseErrors(response) };
     }
     const data = await response.json();
 
@@ -92,8 +90,11 @@ export const fetchRepos = async (
 ): Promise<APIRepositoryResponse> => {
   try {
     const response = await fetch(
-      `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
-    );
+      `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`, {
+        headers: {
+          'Authorization': `token ${TOKEN}`,
+        },
+      });
     if (!response.ok) {
       return {
         message: response.statusText,

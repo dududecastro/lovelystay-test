@@ -1,24 +1,9 @@
 import { ReactElement } from 'react';
+import { Repository } from '../types';
 import moment from 'moment';
 
-interface RepositoryItemProps {
-  id: string;
-  name: string;
-  description?: string;
-  url: string;
-  stars: number;
-  watchers: number;
-  forks: number;
-  issues: number;
-  created_at: string;
-  updated_at: string;
-  language: string;
-  topics: string[];
-  visibility: string;
-};
-
 const RepositoryItem = (data: any): ReactElement => {
-  const repo:RepositoryItemProps = data.data;
+  const repo:Repository = data.data;
 
   if(!repo) return <></>
 
@@ -52,7 +37,7 @@ const RepositoryItem = (data: any): ReactElement => {
         </span>
       </h3>
       {description && <p className='repository-description'>{description}</p>}
-      {topics?.length &&
+      {topics &&
         <ul className='repository-topic-list'>
           {topics.map((topic, key) => (
             <li className='topic-item' key={key}>{topic}</li>

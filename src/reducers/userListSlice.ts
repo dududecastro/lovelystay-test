@@ -4,11 +4,12 @@ import {
   UserList,
   APIUserListResponse,
   APIError,
+  Status
 } from '../types';
 
 export interface UserListState {
   users: UserList | undefined;
-  status: 'default' | 'success' | 'loading' | 'error';
+  status: Status;
   error: string | undefined;
 }
 
@@ -23,6 +24,14 @@ export const searchUser = createAsyncThunk(
   async (data: {username: string; page: number}) => {
     const { username, page } = data;
     const userList = await fetchUserList(username, page);
+    return userList;
+  }
+);
+
+export const cleanUserList = createAsyncThunk(
+  'userList/clean',
+  () => {
+    const userList = undefined;
     return userList;
   }
 );
@@ -57,6 +66,10 @@ const userListSlice = createSlice({
       .addCase(searchUser.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
+      })
+      .addCase(cleanUserList.fulfilled, (state, action) => {
+        state.status = 'default';
+        state.users = action.payload;
       })
   },
 });

@@ -5,6 +5,7 @@ const SearchUserPage = (): ReactElement => {
   const [username, setUsername] = useState('');
   const [choosen, setChoosen] = useState('');
   const [lastUsernames, setLastUsernames] = useState(['dududecastro','github','google']);
+  const minUsernameLength = 3;
 
   useEffect(() => {
     const userList:any = localStorage.getItem('LastUsernames');
@@ -14,6 +15,8 @@ const SearchUserPage = (): ReactElement => {
   }, []);
   
   const saveUsername = (username:string) => {
+    if(username.length <= minUsernameLength)  return;
+    
     setUsername(username);
     setChoosen(username);
     let newList = lastUsernames;
@@ -26,6 +29,8 @@ const SearchUserPage = (): ReactElement => {
     return setLastUsernames(newList)
   }
   const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(username.length <= minUsernameLength)  return;
+
     saveUsername(e.target.value);
   };
 
@@ -48,7 +53,7 @@ const SearchUserPage = (): ReactElement => {
           }}
           required
         />
-        <button>
+        <button disabled={username.length <= minUsernameLength}>
           <svg aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true'>
             <path d='M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z'></path>
           </svg>

@@ -35,10 +35,6 @@
     @media screen and (max-width: $mobile-width) {
       width: 100%;
       max-width: 100%;
-      button {
-        gap: 0;
-        text-indent: -9999px;
-      }
     }
   }
   .user-list {

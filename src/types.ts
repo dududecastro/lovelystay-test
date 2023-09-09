@@ -45,3 +45,5 @@ export type APIUserResponse = User | APIError;
 export type APIUserListResponse = UserList | APIError;
 
 export type APIRepositoryResponse = Repository[] | APIError;
+
+export type Status = 'default' | 'success' | 'loading' | 'error';

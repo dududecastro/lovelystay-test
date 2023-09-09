@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { AppDispatch, MainState } from '../app/store';
@@ -15,28 +15,28 @@ const UserList = (name:any): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(1);
-  const [username, setUsername] = useState('');
   
   const { users, status, error } = useSelector((state: MainState) => state.userList);
 
+  const username = useRef('');
+  
   useEffect(() => {
-    if(username !== name.username){
-      setUsername(name.username)
+    if(username.current !== name.username){
+      username.current = name.username;
       dispatch(searchUser({username: name.username, page:page}));
     }
     if(users) {
       setNumberOfPages(users?.total_count || 1);
     }
+  
   }, [
     dispatch, 
     page, 
     users, 
-    status, 
-    username, 
     name.username]);
 
   const handlePageChange = (number:number) => {
-    const newPage = number >= 0 ? page + number : page - number;
+    const newPage = page + number;
     
     searchParams.set('page', newPage.toString());
     setSearchParams(searchParams);
@@ -67,8 +67,12 @@ const UserList = (name:any): ReactElement => {
     )
   }
 
+  if(status === 'loading') {
+    <div className='status-msg'>Loading...</div>
+  }
+
   return (
-    <div className='error-msg'>{error}</div>
+    <div className='status-msg'>{error}</div>
   )
 };
 

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, MainState } from '../app/store';
@@ -10,9 +10,14 @@ const UserHeader = (): ReactElement => {
   const { user, status, error } = useSelector((state: MainState) => state.user);
 
   const { username } = useParams<{ username: string }>();
+  
+  const name = useRef('');
 
   useEffect(() => {
-    if (username) dispatch(getUser(username));
+    if(name.current !== username){
+      name.current = username || '';
+      if (username) dispatch(getUser(username));
+    }
   }, [dispatch, username]);
 
   return (
