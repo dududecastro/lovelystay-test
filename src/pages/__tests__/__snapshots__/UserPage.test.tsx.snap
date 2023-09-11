@@ -43,5 +43,15 @@ exports[`UserPage should match the snapshot 1`] = `
       Something went wrong please try again later!
     </p>
   </div>
+  <div
+    aria-label="repositories-list"
+    className="repositories-container"
+  >
+    <h2
+      className="repositories-title"
+    >
+      Repositories
+    </h2>
+  </div>
 </div>
 `;

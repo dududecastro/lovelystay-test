@@ -32,7 +32,9 @@ exports[`SearchUserPage should match the snapshot 1`] = `
       required={true}
       value=""
     />
-    <button>
+    <button
+      disabled={true}
+    >
       <svg
         aria-hidden="true"
         data-view-component="true"

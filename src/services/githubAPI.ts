@@ -7,7 +7,7 @@ import {
   APIRepositoryResponse,
 } from '../types';
 
-const TOKEN = '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';
+const TOKEN = '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';
 
 const hasResponseErrors = (response:any) => {
   if (response.status === 403) {
