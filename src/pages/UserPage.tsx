@@ -2,11 +2,20 @@ import { ReactElement } from 'react';
 import UserHeader from '../components/UserHeader';
 import RepositoriesList from '../components/RepositoriesList';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../app/store';
+import { cleanUser } from '../reducers/userSlice';
 
 const UserPage = (): ReactElement => {
+
+  const dispatch = useDispatch<AppDispatch>();
+
   const navigate = useNavigate();
 
-  const goBack = () => navigate('..');
+  const goBack = () => {
+    dispatch(cleanUser());
+    return navigate('..')
+  };
 
   return (
     <div className='display-user-page'>

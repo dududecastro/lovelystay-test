@@ -53,6 +53,18 @@ export const getRepos = createAsyncThunk(
   }
 );
 
+export const cleanUser = createAsyncThunk(
+  'user/cleanUser',
+  () => {
+    const user:undefined = undefined;
+    const repositories:Repository[] = [];
+    return {
+      user: user,
+      repositories: repositories,
+    };
+  }
+);
+
 const isAPIError = (
   toBeDetermined: APIUserResponse | APIRepositoryResponse
 ): toBeDetermined is APIError => {
@@ -102,6 +114,11 @@ const userSlice = createSlice({
       .addCase(getRepos.rejected, (state, action) => {
         state.status.repos = 'error';
         state.error = action.error.message;
+      })
+      .addCase(cleanUser.fulfilled, (state, action) => {
+        state.status.repos = 'success';
+        state.user = action.payload.user;
+        state.repositories = action.payload.repositories;
       });
   },
 });

@@ -20,10 +20,6 @@ const RepositoriesList = (): ReactElement => {
 
   useEffect(() => {
     if(user && currPage.current !== page){
-      console.log('currPage.current: ',currPage.current)
-      console.log('page',page)
-      console.log('user',user)
-      console.log('status.user',status.user)
       currPage.current = page;
       if (status.user === 'success') {
         dispatch(getRepos({ username: user?.login, page }));
